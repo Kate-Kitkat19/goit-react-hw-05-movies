@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
@@ -6,7 +5,6 @@ import { MOCK_Data } from './Product';
 
 export const SharedLayout = () => {
   const [params, setParams] = useSearchParams();
-  const [contacts, setContacts] = useState([]);
 
   function onSubmit(evt) {
     evt.preventDefault();
@@ -14,7 +12,6 @@ export const SharedLayout = () => {
     const normalizedQwery = qwery.toLowerCase();
     const filteredResilts = searchPersonByName(normalizedQwery);
     console.log('onSubmit   filteredResilts', filteredResilts);
-    setContacts(filteredResilts);
   }
 
   function searchPersonByName(name) {
