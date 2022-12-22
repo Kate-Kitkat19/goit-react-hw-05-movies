@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
@@ -5,15 +6,15 @@ import { MOCK_Data } from './Product';
 
 export const SharedLayout = () => {
   const [params, setParams] = useSearchParams();
-  const name = params.get('name') ?? '';
+  const [contacts, setContacts] = useState([]);
 
   function onSubmit(evt) {
     evt.preventDefault();
-    const qwery = params.get('name');
-   
+    const qwery = params.get('name') ?? '';
     const normalizedQwery = qwery.toLowerCase();
     const filteredResilts = searchPersonByName(normalizedQwery);
     console.log('onSubmit   filteredResilts', filteredResilts);
+    setContacts(filteredResilts);
   }
 
   function searchPersonByName(name) {
@@ -34,14 +35,19 @@ export const SharedLayout = () => {
           <NavLink to="/product">Product</NavLink>
         </nav>
       </header>
-      <form onSubmit={onSubmit}>
+      <form>
         <label>
           Please write your query
           <input
             type="text"
-            value={name}
+            value={params.get('name') ?? ''}
             name="qwery"
-            onChange={evt => setParams({ name: evt.target.value })}
+            onChange={evt => {
+              setParams(
+                evt.target.value !== '' ? { name: evt.target.value } : {}
+              );
+              onSubmit(evt);
+            }}
           ></input>
         </label>
         <button type="submit">Submit</button>
