@@ -1,7 +1,6 @@
 import { getTrendingMovies } from 'API/MovieDB';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { ListOfMovies } from 'components/ListOfMovies/ListOfMovies';
 
 export const Home = () => {
