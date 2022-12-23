@@ -25,3 +25,26 @@ export const getMovieByKey = async query => {
     throw new Error('Sorry, something went wrong!');
   }
 };
+
+export const getMoviebyId = async id => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}movie/${id}?api_key=${KEY}&language=en-US`
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error('Sorry, something went wrong!');
+  }
+};
+
+
+export const getMovieCast = async id => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}movie/${id}/credits?api_key=${KEY}&language=en-US`
+    );
+    return response.data.cast;
+  } catch (error) {
+    throw new Error('Sorry, something went wrong!');
+  }
+}
