@@ -37,7 +37,6 @@ export const getMoviebyId = async id => {
   }
 };
 
-
 export const getMovieCast = async id => {
   try {
     const response = await axios.get(
@@ -47,4 +46,15 @@ export const getMovieCast = async id => {
   } catch (error) {
     throw new Error('Sorry, something went wrong!');
   }
-}
+};
+
+export const getMovieReviews = async id => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}movie/${id}/reviews?api_key=${KEY}&language=en-US&page=1`
+    );
+    return response.data.results;
+  } catch (error) {
+    throw new Error('Sorry, something went wrong!');
+  }
+};
