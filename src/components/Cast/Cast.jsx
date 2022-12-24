@@ -18,14 +18,14 @@ export const Cast = () => {
       <ul>
         {cast.map(actor => {
           const { character, name, id, profile_path } = actor;
+          const photo =
+            profile_path !== null
+              ? `${photoUrl}${profile_path}`
+              : 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
           return (
             <li key={id}>
               {` ${name} as ${character}`}
-              <img
-                src={`${photoUrl}${profile_path}`}
-                alt={name}
-                width="50"
-              ></img>
+              <img src={`${photo}`} alt={name} width="50"></img>
             </li>
           );
         })}
