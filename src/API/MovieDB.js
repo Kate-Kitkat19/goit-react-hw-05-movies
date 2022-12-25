@@ -10,7 +10,7 @@ export const getTrendingMovies = async () => {
     );
     return response.data.results;
   } catch (error) {
-    throw new Error('Sorry, something went wrong!');
+   console.error('Sorry, something went wrong!');
   }
 };
 
@@ -22,7 +22,7 @@ export const getMovieByKey = async query => {
     );
     return response.data.results;
   } catch (error) {
-    throw new Error('Sorry, something went wrong!');
+   console.error('Sorry, something went wrong!');
   }
 };
 
@@ -33,7 +33,7 @@ export const getMoviebyId = async id => {
     );
     return response.data;
   } catch (error) {
-    throw new Error('Sorry, something went wrong!');
+   console.error('Sorry, something went wrong!');
   }
 };
 
@@ -44,7 +44,7 @@ export const getMovieCast = async id => {
     );
     return response.data.cast;
   } catch (error) {
-    throw new Error('Sorry, something went wrong!');
+   console.error('Sorry, something went wrong!');
   }
 };
 
@@ -55,6 +55,6 @@ export const getMovieReviews = async id => {
     );
     return response.data.results;
   } catch (error) {
-    throw new Error('Sorry, something went wrong!');
+   console.error('Sorry, something went wrong!');
   }
 };

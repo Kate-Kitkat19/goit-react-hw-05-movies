@@ -5,12 +5,14 @@ import { NotFound } from 'components/NotFound/NotFound';
 import { Loader } from 'components/Loader/Loader';
 import { useSearchParams } from 'react-router-dom';
 import { SearchForm } from 'components/SearchForm/SearchForm';
+import { useEffect } from 'react';
 
 export const Movies = () => {
   const [films, setFilms] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [params, setParams] = useSearchParams();
+
 
   function updateQuery(evt) {
     setParams(evt.target.value !== '' ? { query: evt.target.value } : {});
