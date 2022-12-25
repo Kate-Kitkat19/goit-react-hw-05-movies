@@ -5,7 +5,6 @@ import { NotFound } from 'components/NotFound/NotFound';
 import { Loader } from 'components/Loader/Loader';
 import { useSearchParams } from 'react-router-dom';
 import { SearchForm } from 'components/SearchForm/SearchForm';
-import { useEffect } from 'react';
 
 export const Movies = () => {
   const [films, setFilms] = useState([]);
