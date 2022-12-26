@@ -1,5 +1,5 @@
 import { getMovieByKey } from 'API/MovieDB';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ListOfMovies } from 'components/ListOfMovies/ListOfMovies';
 import { NotFound } from 'components/NotFound/NotFound';
 import { Loader } from 'components/Loader/Loader';
@@ -14,25 +14,28 @@ export const Movies = () => {
 
   const query = params.get('query') ?? '';
 
-  function updateQuery(evt) {
-    setParams(evt.target.value !== '' ? { query: evt.target.value } : {});
-  }
+  useEffect(() => {
+    const isQuerySet = query !== '';
+    if (isQuerySet) {
+      setIsLoading(true);
+      setError(null);
+      setFilms([]);
+      getMovieByKey(query)
+        .then(data => {
+          if (data.length === 0) {
+            setError(true);
+          } else {
+            setFilms(data);
+          }
+        })
+        .finally(() => setIsLoading(false));
+    }
+  }, [query]);
 
-  async function onSubmit(evt) {
-    setIsLoading(true);
-    setError(null);
-    setFilms([]);
+  function onSubmit(evt) {
     evt.preventDefault();
-
-    getMovieByKey(query)
-      .then(data => {
-        if (data.length === 0) {
-          setError(true);
-        } else {
-          setFilms(data);
-        }
-      })
-      .finally(() => setIsLoading(false));
+    const currentQuery = evt.currentTarget.elements.query.value;
+    setParams(currentQuery !== '' ? { query: currentQuery } : '');
     evt.currentTarget.reset();
   }
 
@@ -41,7 +44,6 @@ export const Movies = () => {
       <SearchForm
         onSubmit={onSubmit}
         value={params.get('query') ?? ''}
-        onChange={updateQuery}
       ></SearchForm>
       {isLoading && <Loader></Loader>}
       {error !== null && <NotFound></NotFound>}

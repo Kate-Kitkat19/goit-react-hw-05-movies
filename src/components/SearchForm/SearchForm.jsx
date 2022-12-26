@@ -1,19 +1,16 @@
 import { Form, SearchBtn, StyledInput } from './SearchForm.styled';
 import PropTypes from 'prop-types';
 
-export const SearchForm = ({ onSubmit, value, onChange }) => {
+export const SearchForm = ({ onSubmit, value }) => {
   return (
     <Form onSubmit={onSubmit}>
       <StyledInput
         type="text"
         placeholder="What you`re looking for?"
         name="query"
-        value={value}
-        onChange={evt => {
-          onChange(evt);
-        }}
+        defaultValue={value}
       ></StyledInput>
-      <SearchBtn type="submit" disabled={value === ''}>
+      <SearchBtn type="submit" >
         Search
       </SearchBtn>
     </Form>
@@ -23,5 +20,5 @@ export const SearchForm = ({ onSubmit, value, onChange }) => {
 SearchForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  
 };
