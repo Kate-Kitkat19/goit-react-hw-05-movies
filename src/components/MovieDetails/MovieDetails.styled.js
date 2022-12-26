@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 export const ImageThumb = styled.div`
   width: 340px;
@@ -10,7 +10,9 @@ export const ImageThumb = styled.div`
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 380px 700px;
+  grid-template-columns: 500px 700px;
+  justify-items: center;
+  align-items: center;
 `;
 
 export const TextWrapper = styled.div`
@@ -49,4 +51,28 @@ export const LinkForAddons = styled(NavLink)`
   &.active {
     background-color: #1d3557;
   }
+`;
+
+export const BackMoviesLink = styled(Link)`
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  padding: 10px;
+  border-radius: 3px;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  color: #d5bdaf;
+  width: fit-content;
+  &:hover,
+  &:focus {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+`;
+
+export const Container = styled.div`
+  padding: 20px;
 `;

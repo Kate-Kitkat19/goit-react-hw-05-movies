@@ -6,6 +6,7 @@ export const Title = styled.h2`
   padding: 0;
   color: #1d3557;
   font-family: 'Crimson Text', serif;
+  text-align: center;
 `;
 
 export const MoviesList = styled.ul`

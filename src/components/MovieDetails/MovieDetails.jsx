@@ -1,14 +1,15 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Outlet, useLocation, useParams, Link } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMoviebyId } from 'API/MovieDB';
 import {
   ExtraDetailsWrap,
   ImageThumb,
   TextWrapper,
   Wrapper,
+  Container,
 } from './MovieDetails.styled';
-import { LinkForAddons } from './MovieDetails.styled';
+import { LinkForAddons, BackMoviesLink } from './MovieDetails.styled';
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
@@ -30,8 +31,8 @@ export const MovieDetails = () => {
   const backLink = location.state?.from ?? '/';
 
   return (
-    <>
-      <Link to={backLink}>Back to movies</Link>
+    <Container>
+      <BackMoviesLink to={backLink}>Back to movies</BackMoviesLink>
       <Wrapper>
         <ImageThumb>
           <img src={poster} alt={title}></img>
@@ -56,6 +57,6 @@ export const MovieDetails = () => {
         </TextWrapper>
       </Wrapper>
       <Outlet></Outlet>
-    </>
+    </Container>
   );
 };
