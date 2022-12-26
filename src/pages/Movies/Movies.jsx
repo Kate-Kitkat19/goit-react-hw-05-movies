@@ -1,5 +1,5 @@
 import { getMovieByKey } from 'API/MovieDB';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ListOfMovies } from 'components/ListOfMovies/ListOfMovies';
 import { NotFound } from 'components/NotFound/NotFound';
 import { Loader } from 'components/Loader/Loader';
@@ -12,16 +12,31 @@ export const Movies = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [params, setParams] = useSearchParams();
 
+  const query = params.get('query') ?? '';
 
   function updateQuery(evt) {
     setParams(evt.target.value !== '' ? { query: evt.target.value } : {});
   }
 
+  useEffect(() => {
+    const isQuerySet = query !== '';
+    if (isQuerySet) {
+      getMovieByKey(query).then(data => {
+        if (data.length === 0) {
+          setError(true);
+        } else {
+          setFilms(data);
+        }
+      });
+    }
+  }, []);
+
   async function onSubmit(evt) {
     setIsLoading(true);
     setError(null);
+    setFilms([]);
     evt.preventDefault();
-    const query = params.get('query') ?? '';
+
     getMovieByKey(query)
       .then(data => {
         if (data.length === 0) {

@@ -1,7 +1,8 @@
 import { getTrendingMovies } from 'API/MovieDB';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { MoviesList, StyledLink, Title } from './Home.styled';
 
 export const Home = () => {
   const [films, setFilms] = useState([]);
@@ -18,20 +19,20 @@ export const Home = () => {
 
   return (
     <div>
-      <h2>Thending today</h2>
-      <ul>
+      <Title>Thending today</Title>
+      <MoviesList>
         {films.map(({ title, id: movieId }) => {
           return (
-            <Link
+            <StyledLink
               to={`movies/${movieId}`}
               state={{ from: location }}
               key={movieId}
             >
               <li>{title}</li>
-            </Link>
+            </StyledLink>
           );
         })}
-      </ul>
+      </MoviesList>
     </div>
   );
 };

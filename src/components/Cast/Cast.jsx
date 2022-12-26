@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { getMovieCast } from 'API/MovieDB';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Item, StyledCastList, StyledPhoto } from './Cast.styled';
 
 export const Cast = () => {
   const [cast, setCast] = useState([]);
@@ -15,7 +16,7 @@ export const Cast = () => {
 
   return (
     <div>
-      <ul>
+      <StyledCastList>
         {cast.map(actor => {
           const { character, name, id, profile_path } = actor;
           const photo =
@@ -23,13 +24,17 @@ export const Cast = () => {
               ? `${photoUrl}${profile_path}`
               : 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
           return (
-            <li key={id}>
+            <Item key={id}>
+              <StyledPhoto
+                src={`${photo}`}
+                alt={name}
+                width="150"
+              ></StyledPhoto>
               {` ${name} as ${character}`}
-              <img src={`${photo}`} alt={name} width="50"></img>
-            </li>
+            </Item>
           );
         })}
-      </ul>
+      </StyledCastList>
     </div>
   );
 };
