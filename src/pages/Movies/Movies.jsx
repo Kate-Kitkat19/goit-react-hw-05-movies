@@ -29,7 +29,7 @@ export const Movies = () => {
         }
       });
     }
-  }, []);
+  }, [query]);
 
   async function onSubmit(evt) {
     setIsLoading(true);
