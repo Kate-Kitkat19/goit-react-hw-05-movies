@@ -6,7 +6,7 @@ import { Loader } from 'components/Loader/Loader';
 import { useSearchParams } from 'react-router-dom';
 import { SearchForm } from 'components/SearchForm/SearchForm';
 
-export const Movies = () => {
+const Movies = () => {
   const [films, setFilms] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -51,3 +51,5 @@ export const Movies = () => {
     </>
   );
 };
+
+export default Movies;

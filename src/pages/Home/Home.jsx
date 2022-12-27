@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { MoviesList, StyledLink, Title } from './Home.styled';
 
-export const Home = () => {
+const Home = () => {
   const [films, setFilms] = useState([]);
   const location = useLocation();
 
@@ -36,3 +36,5 @@ export const Home = () => {
     </div>
   );
 };
+
+export default Home;

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Item, StyledCastList, StyledPhoto } from './Cast.styled';
 
-export const Cast = () => {
+const Cast = () => {
   const [cast, setCast] = useState([]);
   const { movieId } = useParams();
 
@@ -38,3 +38,5 @@ export const Cast = () => {
     </div>
   );
 };
+
+export default Cast;

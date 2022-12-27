@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
+import React, { Suspense } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMoviebyId } from 'API/MovieDB';
 import {
@@ -11,7 +12,7 @@ import {
 } from './MovieDetails.styled';
 import { LinkForAddons, BackMoviesLink } from './MovieDetails.styled';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const location = useLocation();
@@ -56,7 +57,11 @@ export const MovieDetails = () => {
           </ExtraDetailsWrap>
         </TextWrapper>
       </Wrapper>
-      <Outlet></Outlet>
+      <Suspense fallback={null}>
+        <Outlet></Outlet>
+      </Suspense>
     </Container>
   );
 };
+
+export default MovieDetails;

@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom';
+import React, { Suspense } from 'react';
 import {
   ContentWrap,
   Navigation,
@@ -6,8 +7,7 @@ import {
   StyledHeader,
 } from './SharedLayout.styled';
 
-
-export const SharedLayout = () => {
+const SharedLayout = () => {
   return (
     <>
       <StyledHeader>
@@ -17,8 +17,12 @@ export const SharedLayout = () => {
         </Navigation>
       </StyledHeader>
       <ContentWrap>
-        <Outlet />
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
       </ContentWrap>
     </>
   );
 };
+
+export default SharedLayout;
